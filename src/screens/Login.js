@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, ScrollView, Text, View, Image, SafeAreaView, TouchableOpacity, Alert, ScrollViewBase } from 'react-native';
-import { navigate } from '../../Navigations';
+import { navigate, navigateFromStack } from '../../Navigations';
 import { AppCol } from '../components/AppColors';
 import CButton from '../components/CButton';
 import CTextInput from '../components/CTextInput';
@@ -17,7 +17,9 @@ const Login = () => {
 
     return (
         <View stye={{ flex: 1 }}>
-            <StatusBar style="light" />
+            <StatusBar
+                backgroundColor="black"
+                style="light" />
             <ImageBackground
                 source={require('../assets/bg1.png')}
                 style={{ width: "100%", height: "100%", }}
@@ -28,7 +30,7 @@ const Login = () => {
                         style={{ width: "100%", resizeMode: 'stretch', marginTop: 20 }}
                         source={require('../assets/img1.png')}
                     />
-                    <ScrollView contentContainerStyle={{paddingBottom:100}} >
+                    <ScrollView contentContainerStyle={{ paddingBottom: 100 }} >
                         <Text style={{ fontFamily: 'CSM', fontSize: 22, color: AppCol.pC, marginTop: 30 }}>Welcome back!</Text>
                         <Text style={{ fontFamily: 'CSB', fontSize: 14, color: '#E0E0E0', marginTop: 5 }}>Enter email & password to continue    </Text>
                         <CTextInput
@@ -51,24 +53,26 @@ const Login = () => {
                                 <EyeShow />
                             </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={{ padding: 10 }}>
+                        <TouchableOpacity
+                            onPress={() => navigate('ForgetPass')}
+                            style={{ padding: 10 }}>
                             <Text style={{ color: '#E0E0E0', fontSize: 'CSB', fontSize: 14, alignSelf: 'flex-end', }}>Forgot password?</Text>
                         </TouchableOpacity>
                         <CButton
                             title="Log In"
                             onPress={() => { }}
                             style={{ marginTop: 20 }}
-                            onPress={()=>navigate('SignUp')}
+                            onPress={() => navigateFromStack('HomeStack', 'Home')}
                         />
-
+                        <TouchableOpacity
+                            onPress={() => navigate('SignUp')}
+                            style={{marginTop:20, alignSelf: 'center' }} >
+                            <Text style={{ color: '#E0E0E0', fontFamily: 'CSB', fontSize: 14, }}>New here? Sign Up</Text>
+                        </TouchableOpacity>
                     </ScrollView>
                 </SafeAreaView>
 
-                <TouchableOpacity 
-                    onPress={()=>navigate('SignUp')}
-                    style={{ position: 'absolute', bottom: 20, alignSelf: 'center' }} >
-                    <Text style={{ color: '#E0E0E0', fontFamily: 'CSB', fontSize: 14, }}>New here? Sign Up</Text>
-                </TouchableOpacity>
+
 
 
             </ImageBackground>

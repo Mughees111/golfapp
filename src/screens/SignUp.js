@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ImageBackground, ScrollView, Text, View, Image, SafeAreaView, TouchableOpacity, Alert, } from 'react-native';
-import { navigate } from '../../Navigations';
+import { navigate, navigateFromStack } from '../../Navigations';
 import { AppCol } from '../components/AppColors';
 import CButton from '../components/CButton';
 import CTextInput from '../components/CTextInput';
@@ -20,7 +20,9 @@ const SignUp = () => {
 
     return (
         <View stye={{ flex: 1 }}>
-            <StatusBar style="light" />
+            <StatusBar
+                backgroundColor="black"
+                style="light" />
             <ImageBackground
                 source={require('../assets/bg1.png')}
                 style={{ width: "100%", height: "100%", }}
@@ -85,19 +87,15 @@ const SignUp = () => {
                             title="Sign Up"
                             onPress={() => { }}
                             style={{ marginTop: 20 }}
-                            onPress={()=>navigate('Login')}
+                            onPress={() => navigateFromStack('HomeStack', 'Home')}
                         />
-
+                        <TouchableOpacity
+                            onPress={() => navigate('Login')}
+                            style={{ marginTop: 20, alignSelf: 'center' }} >
+                            <Text style={{ color: '#E0E0E0', fontFamily: 'CSB', fontSize: 14, }}>Already have account? Log In</Text>
+                        </TouchableOpacity>
                     </ScrollView>
                 </SafeAreaView>
-
-                <TouchableOpacity
-                    onPress={() => navigate('Login')}
-                    style={{ position: 'absolute', bottom: 20, alignSelf: 'center' }} >
-                    <Text style={{ color: '#E0E0E0', fontFamily: 'CSB', fontSize: 14, }}>Already have account? Log In</Text>
-                </TouchableOpacity>
-
-
             </ImageBackground>
 
         </View>
